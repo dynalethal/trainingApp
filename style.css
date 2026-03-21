@@ -94,3 +94,14 @@ input {
   background: #0f172a;
   color: var(--text);
 }
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions a {
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: bold;
+}
