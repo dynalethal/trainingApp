@@ -4,31 +4,24 @@ document.querySelector("header p").innerText =
   `🔥 ${streak} sessions this week`;
 
 const workouts = {
-  day1: [
-    { name: "Squat", icon: "🏋️", reps: "6-8", video: "https://www.youtube.com/watch?v=aclHkVaku9U" },
-    { name: "Squat Hold", icon: "🧱", reps: "20-40s", video: "https://www.youtube.com/watch?v=YaXPRqUwItQ" },
-    { name: "Glute Bridge", icon: "🍑", reps: "10-15", video: "https://www.youtube.com/watch?v=wPM8icPu6H8" },
-    { name: "Row", icon: "🚣", reps: "8-12", video: "https://www.youtube.com/watch?v=pYcpY20QaE8" },
-    { name: "Heel Drops", icon: "🦶", reps: "10-15", video: "https://www.youtube.com/watch?v=YMmgqO8Jo-k" },
-    { name: "Plank", icon: "🧘", reps: "20-30s", video: "https://www.youtube.com/watch?v=pSHjTRCQxIw" }
+  dayA: [
+    { name: "Goblet Squat", icon: "🏋️", reps: "6-8", video: "https://www.youtube.com/watch?v=MeIiIdhvXT4" },
+    { name: "Romanian Deadlift", icon: "🔗", reps: "6-8", video: "https://www.youtube.com/watch?v=2SHsk9AzdjA" },
+    { name: "Floor Press", icon: "💪", reps: "8-10", video: "https://www.youtube.com/watch?v=8mWJ6a6dG7k" },
+    { name: "One-Arm Row", icon: "🏹", reps: "10", video: "https://www.youtube.com/watch?v=pYcpY20QaE8" },
+    { name: "Suitcase Carry", icon: "🧳", reps: "30-40s", video: "https://www.youtube.com/watch?v=6H8WLfyavWk" }
   ],
-  day2: [
-    { name: "Split Squat", icon: "⚖️", reps: "6-10/leg", video: "https://www.youtube.com/watch?v=2C-uNgKwPLE" },
-    { name: "Floor Press", icon: "💪", reps: "8-12", video: "https://www.youtube.com/watch?v=8mWJ6a6dG7k" },
-    { name: "One-Arm Row", icon: "🏹", reps: "8-12", video: "https://www.youtube.com/watch?v=pYcpY20QaE8" },
-    { name: "Overhead Carry", icon: "📦", reps: "30-45s", video: "https://www.youtube.com/watch?v=6H8WLfyavWk" },
-    { name: "Step Downs", icon: "⬇️", reps: "6-8/leg", video: "https://www.youtube.com/watch?v=2gZ3G1pY7Qk" },
-    { name: "Dead Bug", icon: "🐞", reps: "6-10", video: "https://www.youtube.com/watch?v=g_BYB0R-4Ws" }
-  ],
-  day3: [
-    { name: "RDL", icon: "🔗", reps: "8-12", video: "https://www.youtube.com/watch?v=2SHsk9AzdjA" },
-    { name: "Single-Leg RDL", icon: "🦵", reps: "6-8/leg", video: "https://www.youtube.com/watch?v=2SHsk9AzdjA" },
-    { name: "Push-Ups", icon: "🔥", reps: "6-10", video: "https://www.youtube.com/watch?v=IODxDxX7oi4" },
-    { name: "Reverse Lunge", icon: "↩️", reps: "6-10/leg", video: "https://www.youtube.com/watch?v=QOVaHwm-Q6U" },
-    { name: "Side Lunges", icon: "↔️", reps: "6-10", video: "https://www.youtube.com/watch?v=rvqLVxYqEvo" },
-    { name: "Side Plank", icon: "📏", reps: "20-30s", video: "https://www.youtube.com/watch?v=K2VljzCC16g" }
+
+  dayB: [
+    { name: "Reverse Lunges", icon: "↩️", reps: "8/leg", video: "https://www.youtube.com/watch?v=QOVaHwm-Q6U" },
+    { name: "Overhead Press", icon: "📦", reps: "8", video: "https://www.youtube.com/watch?v=2yjwXTZQDDI" },
+    { name: "Step-Ups", icon: "⬆️", reps: "10/leg", video: "https://www.youtube.com/watch?v=dQqApCGd5Ss" },
+    { name: "Hip Thrust", icon: "🍑", reps: "10", video: "https://www.youtube.com/watch?v=LM8XHLYJoYs" },
+    { name: "Low Impact Jumps", icon: "⚡", reps: "10", video: "https://www.youtube.com/watch?v=U4s4mEQ5VqU" }
   ]
 };
+
+<div class="tag">🦴 Bone Builder</div>
 
 function showDay(day, btn) {
   document.querySelectorAll(".tabs button")
@@ -95,17 +88,21 @@ function getCoachMessage(history, targetReps) {
   const lastReps = parseInt(last.reps);
   const prevReps = parseInt(prev.reps);
 
-  const maxTarget = parseInt(targetReps.split("-")[1]);
+  const maxTarget = parseInt(targetReps.split("-")[1] || targetReps);
 
   if (lastReps >= maxTarget && prevReps >= maxTarget) {
-    return "⬆️ Increase weight next session";
+    return "⬆️ Increase weight (bone stimulus ↑)";
   }
 
   if (lastReps < prevReps) {
-    return "⚠️ Keep weight or reduce slightly";
+    return "⚠️ Hold or reduce slightly";
   }
 
-  return "✅ Good — stay here";
+  if (lastReps >= maxTarget - 1) {
+    return "🔥 Nearly there — push next time";
+  }
+
+  return "✅ Solid work — keep building";
 }
 
 function getWeeklyStreak() {
