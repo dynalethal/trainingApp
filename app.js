@@ -1,3 +1,8 @@
+const streak = getWeeklyStreak();
+
+document.querySelector("header p").innerText =
+  `🔥 ${streak} sessions this week`;
+
 const workouts = {
   day1: [
     { name: "Squat", icon: "🏋️", reps: "6-8", video: "https://www.youtube.com/watch?v=aclHkVaku9U" },
@@ -103,4 +108,22 @@ function getCoachMessage(history, targetReps) {
   return "✅ Good — stay here";
 }
 
+function getWeeklyStreak() {
+  const now = new Date();
+  const weekAgo = new Date();
+  weekAgo.setDate(now.getDate() - 7);
+
+  let count = 0;
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const item = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    if (item?.history) {
+      item.history.forEach(h => {
+        if (new Date(h.date) > weekAgo) count++;
+      });
+    }
+  }
+
+  return count;
+}
 
