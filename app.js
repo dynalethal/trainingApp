@@ -21,7 +21,7 @@ const workouts = {
   ]
 };
 
-<div class="tag">🦴 Bone Builder</div>
+
 
 function showDay(day, btn) {
   document.querySelectorAll(".tabs button")
@@ -42,6 +42,7 @@ function showDay(day, btn) {
       <div class="exercise-name">${ex.icon} ${ex.name}</div>
       <div class="reps">${ex.reps}</div
       <div class="coach">${coach}</div>
+      <div class="tag">🦴 Bone Builder</div>
       </div>
 
       <div class="inputs">
