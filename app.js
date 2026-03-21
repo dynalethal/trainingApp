@@ -21,8 +21,6 @@ const workouts = {
   ]
 };
 
-
-
 function showDay(day, btn) {
   document.querySelectorAll(".tabs button")
     .forEach(b => b.classList.remove("active"));
@@ -37,21 +35,22 @@ function showDay(day, btn) {
     const card = document.createElement("div");
     card.className = "exercise-card";
     const coach = getCoachMessage(saved.history, ex.reps);
+
     card.innerHTML = `
       <div class="exercise-header">
-      <div class="exercise-name">${ex.icon} ${ex.name}</div>
-      <div class="reps">${ex.reps}</div
-      <div class="coach">${coach}</div>
-      <div class="tag">🦴 Bone Builder</div>
+        <div class="exercise-name">${ex.icon} ${ex.name}</div>
+        <div class="reps">${ex.reps}</div>
+        <div class="coach">${coach}</div>
+        <div class="tag">🦴 Bone Builder</div>
       </div>
-
+    
       <div class="inputs">
         <input placeholder="kg" value="${saved.weight || ""}" 
           onchange="save('${day}', ${index}, this.value, 'weight')">
         <input placeholder="reps" value="${saved.reps || ""}" 
           onchange="save('${day}', ${index}, this.value, 'reps')">
       </div>
-
+    
       <div class="actions">
         <a href="${ex.video}" target="_blank">▶ Watch</a>
       </div>
@@ -77,8 +76,6 @@ function save(day, index, value, type) {
 
   localStorage.setItem(key, JSON.stringify(existing));
 }
-
-showDay("day1", document.querySelector(".tabs button"));
 
 function getCoachMessage(history, targetReps) {
   if (!history || history.length < 2) return "Start here 💪";
@@ -125,3 +122,4 @@ function getWeeklyStreak() {
   return count;
 }
 
+showDay("day1", document.querySelector(".tabs button"));
