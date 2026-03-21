@@ -38,11 +38,12 @@ function showDay(day, btn) {
 
     const card = document.createElement("div");
     card.className = "exercise-card";
-
+    const coach = getCoachMessage(saved.history, ex.reps);
     card.innerHTML = `
       <div class="exercise-header">
       <div class="exercise-name">${ex.icon} ${ex.name}</div>
-      <div class="reps">${ex.reps}</div>
+      <div class="reps">${ex.reps}</div
+      <div class="coach">${coach}</div>
       </div>
 
       <div class="inputs">
@@ -63,9 +64,43 @@ function showDay(day, btn) {
 
 function save(day, index, value, type) {
   const key = day + index;
-  const existing = JSON.parse(localStorage.getItem(key)) || {};
+  let existing = JSON.parse(localStorage.getItem(key)) || {};
+
   existing[type] = value;
+
+  // Save history
+  existing.history = existing.history || [];
+  existing.history.push({
+    weight: existing.weight,
+    reps: existing.reps,
+    date: new Date().toISOString()
+  });
+
   localStorage.setItem(key, JSON.stringify(existing));
 }
 
 showDay("day1", document.querySelector(".tabs button"));
+
+function getCoachMessage(history, targetReps) {
+  if (!history || history.length < 2) return "Start here 💪";
+
+  const last = history[history.length - 1];
+  const prev = history[history.length - 2];
+
+  const lastReps = parseInt(last.reps);
+  const prevReps = parseInt(prev.reps);
+
+  const maxTarget = parseInt(targetReps.split("-")[1]);
+
+  if (lastReps >= maxTarget && prevReps >= maxTarget) {
+    return "⬆️ Increase weight next session";
+  }
+
+  if (lastReps < prevReps) {
+    return "⚠️ Keep weight or reduce slightly";
+  }
+
+  return "✅ Good — stay here";
+}
+
+
