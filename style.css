@@ -105,3 +105,9 @@ input {
   color: var(--accent);
   font-weight: bold;
 }
+
+.coach {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #38bdf8;
+}
