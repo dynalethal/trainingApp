@@ -7,15 +7,22 @@
 </head>
 <body>
 
-<h1>🦴 Bone Strength Plan</h1>
+<div class="app">
 
-<div class="tabs">
-  <button onclick="showDay('day1')">Day 1</button>
-  <button onclick="showDay('day2')">Day 2</button>
-  <button onclick="showDay('day3')">Day 3</button>
+  <header>
+    <h1>🦴 Bone Strength</h1>
+    <p>Strong today. Strong at 80.</p>
+  </header>
+
+  <div class="tabs">
+    <button onclick="showDay('day1', this)" class="active">Day 1</button>
+    <button onclick="showDay('day2', this)">Day 2</button>
+    <button onclick="showDay('day3', this)">Day 3</button>
+  </div>
+
+  <div id="workout" class="workout"></div>
+
 </div>
-
-<div id="workout"></div>
 
 <script src="app.js"></script>
 </body>
