@@ -1,33 +1,96 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #22c55e;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
   max-width: 600px;
   margin: auto;
   padding: 20px;
 }
 
-h1 {
+header {
   text-align: center;
+  margin-bottom: 20px;
+}
+
+header p {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .tabs {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-button {
+.tabs button {
+  flex: 1;
   padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.exercise {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
+.tabs button.active {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+}
+
+.workout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exercise-card {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exercise-name {
+  font-weight: bold;
+}
+
+.reps {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.inputs {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 input {
-  width: 60px;
-  margin-left: 5px;
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: #0f172a;
+  color: var(--text);
 }
