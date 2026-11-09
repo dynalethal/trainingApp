@@ -122,4 +122,4 @@ function getWeeklyStreak() {
   return count;
 }
 
-showDay("day1", document.querySelector(".tabs button"));
+showDay("dayA", document.querySelector(".tabs button"));
